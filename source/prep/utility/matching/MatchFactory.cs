@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Net.Mime;
-using prep.collections;
 
 namespace prep.utility.matching
 {
@@ -27,7 +24,7 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
     {
-        return equal_to(value).not();
+      return equal_to(value).not();
     }
   }
 }

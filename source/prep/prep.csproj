@@ -66,6 +66,7 @@
     <Compile Include="collections\ReadOnlySet.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\IGetAnAttribute.cs" />
+    <Compile Include="utility\matching\ComparableMatchFactory.cs" />
     <Compile Include="utility\matching\ConditionalMatch.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\matching\IMatchA.cs" />

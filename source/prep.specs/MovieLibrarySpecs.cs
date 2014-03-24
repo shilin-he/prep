@@ -1,12 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Machine.Specifications;
-using developwithpassion.specifications.extensions;
-using developwithpassion.specifications.rhinomocks;
-using prep.collections;
-using prep.specs.utility;
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
  * MovieLibrary is an collection of Movie. It exposes the ability to search,sort, and iterate over all of the movies that it contains.
  * The current implementation of MovieLibrary has almost all of its methods throwing a NotImplementedException. Your job is to get all of the Contexts and their
@@ -54,6 +45,14 @@ using prep.specs.utility;
  * 
  * Develop With Passion®!!
  */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using developwithpassion.specifications.extensions;
+using developwithpassion.specifications.rhinomocks;
+using Machine.Specifications;
+using prep.collections;
+using prep.specs.utility;
 using prep.utility;
 using prep.utility.matching;
 
@@ -134,7 +133,7 @@ namespace prep.specs
 
       Establish c = () =>
       {
-        Enumerable.Range(1,100).each( x => movie_collection.Add(new Movie()));
+        Enumerable.Range(1, 100).each(x => movie_collection.Add(new Movie()));
       };
 
       Because b = () =>
@@ -147,6 +146,7 @@ namespace prep.specs
 
       static IEnumerable<Movie> results;
     }
+
     public class when_adding_a_movie_to_the_library : movie_library_concern
     {
       static Movie movie;
@@ -209,7 +209,7 @@ namespace prep.specs
       It should_be_able_to_find_all_movies_published_by_pixar = () =>
       {
         var condition = Match<Movie>.with_attribute(x => x.production_studio)
-                                    .equal_to(ProductionStudio.Pixar);
+          .equal_to(ProductionStudio.Pixar);
 
         var results = sut.all_movies().all_items_matching(condition);
 
@@ -219,8 +219,8 @@ namespace prep.specs
       It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
       {
         var condition = Match<Movie>.with_attribute(x => x.production_studio)
-                                    .equal_to_any(ProductionStudio.Pixar,
-                                    ProductionStudio.Disney);
+          .equal_to_any(ProductionStudio.Pixar,
+            ProductionStudio.Disney);
 
         var results = sut.all_movies().all_items_matching(condition);
 
@@ -230,7 +230,7 @@ namespace prep.specs
       It should_be_able_to_find_all_movies_not_published_by_pixar = () =>
       {
         var condition = Match<Movie>.with_attribute(x => x.production_studio)
-                                    .not_equal_to(ProductionStudio.Pixar);
+          .not_equal_to(ProductionStudio.Pixar);
 
         var results = sut.all_movies().all_items_matching(condition);
 
@@ -239,7 +239,10 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-        var results = sut.all_movies_published_after(2004);
+        var condition = Match<Movie>.with_comparable_attribute(x => x.date_published.Year)
+          .greater_than(2004);
+
+        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldContainOnly(the_ring, shrek, theres_something_about_mary);
       };
@@ -278,8 +281,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_title_descending();
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
-                                         pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
-                                         cars, a_bugs_life);
+          pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
+          cars, a_bugs_life);
       };
 
       It should_be_able_to_sort_all_movies_by_title_ascending = () =>
@@ -287,8 +290,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_title_ascending();
 
         results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
-                                         pirates_of_the_carribean, shrek, the_ring,
-                                         theres_something_about_mary);
+          pirates_of_the_carribean, shrek, the_ring,
+          theres_something_about_mary);
       };
 
       It should_be_able_to_sort_all_movies_by_date_published_descending = () =>
@@ -296,8 +299,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_date_published_descending();
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, the_ring, cars,
-                                         pirates_of_the_carribean, a_bugs_life,
-                                         indiana_jones_and_the_temple_of_doom);
+          pirates_of_the_carribean, a_bugs_life,
+          indiana_jones_and_the_temple_of_doom);
       };
 
       It should_be_able_to_sort_all_movies_by_date_published_ascending = () =>
@@ -305,8 +308,8 @@ namespace prep.specs
         var results = sut.sort_all_movies_by_date_published_ascending();
 
         results.ShouldContainOnlyInOrder(indiana_jones_and_the_temple_of_doom, a_bugs_life,
-                                         pirates_of_the_carribean, cars, the_ring, shrek,
-                                         theres_something_about_mary);
+          pirates_of_the_carribean, cars, the_ring, shrek,
+          theres_something_about_mary);
       };
 
       It should_be_able_to_sort_all_movies_by_studio_rating_and_year_published = () =>
@@ -325,8 +328,8 @@ namespace prep.specs
                  * Movie classes.*/
 
         results.ShouldContainOnlyInOrder(the_ring, theres_something_about_mary, a_bugs_life, cars, shrek,
-                                         indiana_jones_and_the_temple_of_doom,
-                                         pirates_of_the_carribean);
+          indiana_jones_and_the_temple_of_doom,
+          pirates_of_the_carribean);
       };
     }
 

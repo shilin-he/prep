@@ -1,17 +1,17 @@
 ﻿namespace prep.utility.matching
 {
-    public class NotMatch<Item> : IMatchA<Item>
+  public class NotMatch<Item> : IMatchA<Item>
+  {
+    IMatchA<Item> to_negate;
+
+    public NotMatch(IMatchA<Item> to_negate)
     {
-        private readonly IMatchA<Item> _left;
-
-        public NotMatch(IMatchA<Item> left)
-        {
-            _left = left;
-        }
-
-        public bool matches(Item item)
-        {
-            return !_left.matches(item);
-        }
+      to_negate = to_negate;
     }
+
+    public bool matches(Item item)
+    {
+      return !to_negate.matches(item);
+    }
+  }
 }
