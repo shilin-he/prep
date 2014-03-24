@@ -69,23 +69,19 @@ namespace prep.collections
       return movie.production_studio == ProductionStudio.Pixar;
     }
 
-    public IEnumerable<Movie> all_matching(Condition<Movie> condition)
-    {
-      return movies.all_items_matching(condition); 
-    }
     public IEnumerable<Movie> all_movies_published_by_pixar()
     {
-      return all_matching(x => x.production_studio == ProductionStudio.Pixar );
+      return movies.all_items_matching(x => x.production_studio == ProductionStudio.Pixar );
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
     {
-      return all_matching(x => x.production_studio == ProductionStudio.Pixar || x.production_studio == ProductionStudio.Disney);
+      return movies.all_items_matching(x => x.production_studio == ProductionStudio.Pixar || x.production_studio == ProductionStudio.Disney);
     }
 
     public IEnumerable<Movie> all_movies_not_published_by_pixar()
     {
-      return all_matching(x => x.production_studio != ProductionStudio.Pixar);
+      return movies.all_items_matching(x => x.production_studio != ProductionStudio.Pixar);
     }
 
     /// <summary>
@@ -101,7 +97,7 @@ namespace prep.collections
     /// </exception>
     public IEnumerable<Movie> all_movies_published_after(int year)
     {
-      return all_matching(x => x.date_published.Year > year);
+      return movies.all_items_matching(x => x.date_published.Year > year);
     }
 
     /// <summary>
@@ -120,7 +116,7 @@ namespace prep.collections
     /// </exception>
     public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
     {
-      return all_matching(x => x.date_published.Year >= startingYear && x.date_published.Year <= endingYear);
+      return movies.all_items_matching(x => x.date_published.Year >= startingYear && x.date_published.Year <= endingYear);
     }
 
     /// <summary>
@@ -133,7 +129,7 @@ namespace prep.collections
     /// </exception>
     public IEnumerable<Movie> all_kid_movies()
     {
-      return all_matching(x => x.genre == Genre.kids);
+      return movies.all_items_matching(x => x.genre == Genre.kids);
     }
 
     /// <summary>
@@ -146,7 +142,7 @@ namespace prep.collections
     /// </exception>
     public IEnumerable<Movie> all_action_movies()
     {
-      return all_matching(x => x.genre == Genre.action);
+      return movies.all_items_matching(x => x.genre == Genre.action);
     }
 
     /// <summary>

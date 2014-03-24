@@ -1,4 +1,4 @@
-﻿namespace prep.utility
+﻿namespace prep.utility.matching
 {
   public class OrMatch<Item> : IMatchA<Item>
   {

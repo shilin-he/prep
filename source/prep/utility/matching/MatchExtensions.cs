@@ -1,4 +1,4 @@
-﻿namespace prep.utility
+﻿namespace prep.utility.matching
 {
   public static class MatchExtensions
   {
