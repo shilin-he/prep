@@ -55,6 +55,7 @@ using prep.specs.utility;
  * Develop With Passion®!!
  */
 using prep.utility;
+using prep.utility.matching;
 
 namespace prep.specs
 {
@@ -207,7 +208,7 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_by_pixar = () =>
       {
-        var condition = Match<Movie>.with(x => x.production_studio)
+        var condition = Match<Movie>.with_attribute(x => x.production_studio)
                                     .equal_to(ProductionStudio.Pixar);
 
         var results = sut.all_movies().all_items_matching(condition);
