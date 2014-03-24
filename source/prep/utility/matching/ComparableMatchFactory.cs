@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 
 namespace prep.utility.matching
 {
@@ -19,5 +20,14 @@ namespace prep.utility.matching
         return attribute_value.CompareTo(value) > 0;
       });
     }
+
+    public IMatchA<ItemToMatch> between(AttributeType start, AttributeType end)
+    {
+      return new ConditionalMatch<ItemToMatch>(x =>
+      {
+        var attribute_value = accessor(x);
+        return attribute_value.CompareTo(start) >= 0 && attribute_value.CompareTo(end) <= 0;
+      });
+    } 
   }
 }
