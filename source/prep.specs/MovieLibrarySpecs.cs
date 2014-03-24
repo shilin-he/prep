@@ -126,6 +126,25 @@ namespace prep.specs
         spec.exception_thrown.ShouldBeAn<InvalidCastException>();
     }
 
+    public class when_iterating : movie_library_concern
+    {
+      static Movie movie;
+
+      Establish c = () =>
+      {
+        Enumerable.Range(1,100).each( x => movie_collection.Add(new Movie()));
+      };
+
+      Because b = () =>
+        results = sut.all_movies();
+
+      It should_store_it_in_the_movie_collection = () =>
+      {
+        var result = results.First();
+      };
+
+      static IEnumerable<Movie> results;
+    }
     public class when_adding_a_movie_to_the_library : movie_library_concern
     {
       static Movie movie;

@@ -16,3 +16,4 @@
 
 7. Favour composition over inheritance
 
+8. Encapsulate what varies
