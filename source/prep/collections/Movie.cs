@@ -64,9 +64,20 @@ namespace prep.collections
       return Equals(obj as Movie);
     }
 
-    public static Condition<Movie> is_published_by(ProductionStudio studio)
+    public static Condition<Movie> is_published_by(params ProductionStudio[] studios)
     {
-      return x => x.production_studio == studio;
+        return x =>
+        {
+            var movieStudio = x.production_studio;
+
+            foreach (var studio in studios)
+            {
+                if (movieStudio == studio)
+                    return true;
+            }
+
+            return false;
+        };
     }
 
     public static Condition<Movie> is_in_genre(Genre genre)
@@ -76,7 +87,7 @@ namespace prep.collections
 
     public static Condition<Movie> is_published_by_pixar_or_disney()
     {
-      throw new NotImplementedException();
+        return is_published_by(ProductionStudio.Pixar, ProductionStudio.Disney);
     }
   }
 }
