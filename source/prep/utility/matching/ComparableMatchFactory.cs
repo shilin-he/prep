@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Policy;
 
 namespace prep.utility.matching
 {
@@ -28,6 +27,6 @@ namespace prep.utility.matching
         var attribute_value = accessor(x);
         return attribute_value.CompareTo(start) >= 0 && attribute_value.CompareTo(end) <= 0;
       });
-    } 
+    }
   }
 }
