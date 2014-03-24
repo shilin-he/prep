@@ -6,7 +6,7 @@
 
     public NotMatch(IMatchA<Item> to_negate)
     {
-      to_negate = to_negate;
+      this.to_negate = to_negate;
     }
 
     public bool matches(Item item)
