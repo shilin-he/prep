@@ -1,3 +1,5 @@
+using prep.collections;
+
 namespace prep.utility.matching
 {
   public class MatchFactory<ItemToMatch, AttributeType>
@@ -11,7 +13,13 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> equal_to(AttributeType value)
     {
-      return new ConditionalMatch<ItemToMatch>(item => property_accessor(item).Equals(value));
+      return new ConditionalMatch<ItemToMatch>(item => 
+        property_accessor(item).Equals(value));
+    }
+
+    public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
+    {
+      throw new System.NotImplementedException();
     }
   }
 }
