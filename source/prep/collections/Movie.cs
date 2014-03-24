@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Security.Cryptography;
+using prep.utility;
 
 namespace prep.collections
 {
@@ -60,6 +62,21 @@ namespace prep.collections
     public override bool Equals(object obj)
     {
       return Equals(obj as Movie);
+    }
+
+    public static Condition<Movie> is_published_by(ProductionStudio studio)
+    {
+      return x => x.production_studio == studio;
+    }
+
+    public static Condition<Movie> is_in_genre(Genre genre)
+    {
+      return x => x.genre == genre;
+    }
+
+    public static Condition<Movie> is_published_by_pixar_or_disney()
+    {
+      throw new NotImplementedException();
     }
   }
 }

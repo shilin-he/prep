@@ -6,7 +6,6 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using prep.collections;
 using prep.specs.utility;
-
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
  * MovieLibrary is an collection of Movie. It exposes the ability to search,sort, and iterate over all of the movies that it contains.
  * The current implementation of MovieLibrary has almost all of its methods throwing a NotImplementedException. Your job is to get all of the Contexts and their
@@ -54,6 +53,7 @@ using prep.specs.utility;
  * 
  * Develop With Passion®!!
  */
+using prep.utility;
 
 namespace prep.specs
 {
@@ -206,13 +206,15 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_by_pixar = () =>
       {
-        var results = sut.all_movies_published_by_pixar();
+        var condition = Movie.is_published_by(ProductionStudio.Pixar);
+        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldContainOnly(cars, a_bugs_life);
       };
 
       It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
       {
+        var condition = Movie.is_published_by_pixar_or_disney();
         var results = sut.all_movies_published_by_pixar_or_disney();
 
         results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
