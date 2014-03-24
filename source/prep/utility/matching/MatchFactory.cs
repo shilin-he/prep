@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Mime;
 using prep.collections;
 
 namespace prep.utility.matching
@@ -13,17 +16,18 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> equal_to(AttributeType value)
     {
-      return new ConditionalMatch<ItemToMatch>(item => 
-        property_accessor(item).Equals(value));
+      return equal_to_any(value);
     }
 
     public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
     {
-        foreach (var x in values)
-        {
-            return equal_to(x);
-        }
-        return null; 
+      return new ConditionalMatch<ItemToMatch>(x =>
+        new List<AttributeType>(values).Contains(property_accessor(x)));
+    }
+
+    public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
+    {
+      throw new NotImplementedException();
     }
   }
 }
