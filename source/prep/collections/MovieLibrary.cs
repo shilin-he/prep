@@ -71,7 +71,7 @@ namespace prep.collections
 
     public IEnumerable<Movie> all_matching(Condition<Movie> condition)
     {
-      return movies.all_items_matching(condition); 
+      return movies.all_items_matching(new AnonymouseMatcher<Movie>(condition)); 
     }
     public IEnumerable<Movie> all_movies_published_by_pixar()
     {
