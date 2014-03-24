@@ -82,9 +82,7 @@ namespace prep.specs
         number_of_movies = sut.all_movies().Count();
 
       It should_return_the_number_of_all_movies_in_the_library = () =>
-      {
         number_of_movies.ShouldEqual(2);
-      };
     }
 
     public class when_asked_for_all_of_the_movies : movie_library_concern
