@@ -64,30 +64,20 @@ namespace prep.collections
       return Equals(obj as Movie);
     }
 
-    public static Condition<Movie> is_published_by(params ProductionStudio[] studios)
+    public static IMatchA<Movie> is_published_by(ProductionStudio studio)
     {
-        return x =>
-        {
-            var movieStudio = x.production_studio;
-
-            foreach (var studio in studios)
-            {
-                if (movieStudio == studio)
-                    return true;
-            }
-
-            return false;
-        };
+      return new IsPublishedBy(studio);
     }
 
-    public static Condition<Movie> is_in_genre(Genre genre)
+    public static IMatchA<Movie> is_in_genre(Genre genre)
     {
-      return x => x.genre == genre;
+      return new IsInGenre(genre);
     }
 
-    public static Condition<Movie> is_published_by_pixar_or_disney()
+    public static IMatchA<Movie> is_published_by_pixar_or_disney()
     {
-        return is_published_by(ProductionStudio.Pixar, ProductionStudio.Disney);
+      return is_published_by(ProductionStudio.Pixar)
+        .or(is_published_by(ProductionStudio.Disney));
     }
   }
 }
