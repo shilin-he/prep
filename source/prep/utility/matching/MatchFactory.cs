@@ -27,7 +27,7 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
     {
-      throw new NotImplementedException();
+      return new NegatingMatch<ItemToMatch>(equal_to(value));
     }
   }
 }
