@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Mime;
+using System.Runtime.Remoting.Messaging;
 using prep.collections;
 
 namespace prep.utility.matching
@@ -27,6 +28,7 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
     {
+//      return new ConditionalMatch<ItemToMatch>(x => !equal_to(value).matches(x));
       return new NegatingMatch<ItemToMatch>(equal_to(value));
     }
   }
