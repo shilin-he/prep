@@ -11,7 +11,7 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> equal_to(AttributeType value)
     {
-      throw new System.NotImplementedException();
+      return new ConditionalMatch<ItemToMatch>(item => property_accessor(item).Equals(value));
     }
   }
 }
