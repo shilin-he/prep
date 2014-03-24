@@ -19,7 +19,11 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
     {
-      throw new System.NotImplementedException();
+        foreach (var x in values)
+        {
+            return equal_to(x);
+        }
+        return null; 
     }
   }
 }
