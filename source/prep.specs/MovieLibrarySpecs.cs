@@ -222,7 +222,7 @@ namespace prep.specs
                                     .equal_to_any(ProductionStudio.Pixar,
                                     ProductionStudio.Disney);
 
-        var results = sut.all_movies_published_by_pixar_or_disney();
+        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
       };
@@ -232,7 +232,7 @@ namespace prep.specs
         var condition = Match<Movie>.with_attribute(x => x.production_studio)
                                     .not_equal_to(ProductionStudio.Pixar);
 
-        var results = sut.all_movies_not_published_by_pixar();
+        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldNotContain(cars, a_bugs_life);
       };

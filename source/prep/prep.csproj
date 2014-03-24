@@ -73,6 +73,7 @@
     <Compile Include="utility\matching\MatchExtensions.cs" />
     <Compile Include="utility\matching\MatchFactory.cs" />
     <Compile Include="utility\matching\NeverMatches.cs" />
+    <Compile Include="utility\matching\NotMatch.cs" />
     <Compile Include="utility\matching\OrMatch.cs" />
   </ItemGroup>
   <ItemGroup>
