@@ -1,6 +1,7 @@
 namespace prep.utility.matching
 {
-  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToCreateResult<IMatchA<ItemToMatch>, AttributeType>
+  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : 
+    IProvideAccessToCreateResult<IMatchA<ItemToMatch>, AttributeType>
   {
     IGetAnAttribute<ItemToMatch, AttributeType> accessor;
 

@@ -15,10 +15,6 @@ namespace prep.utility.matching
       return create_conditional_match(extension_point, new EqualToAny<AttributeType>(values));
     }
 
-    //  public static TResult not_equal_to<TResult, AttributeType>(this IProvideAccessToCreateResult<TResult, AttributeType> extension_point, AttributeType value)
-    //{
-    //  return equal_to(extension_point, value).not();
-    //}
 
     //  public static TResult create_conditional_match<TResult, AttributeType>(this IProvideAccessToCreateResult<TResult, AttributeType> extension_point, Condition<ItemToMatch> condition)
     //{
