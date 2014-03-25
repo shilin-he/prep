@@ -65,6 +65,9 @@
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\IGetAnAttribute.cs" />
     <Compile Include="utility\matching\AttributeMatch.cs" />
+    <Compile Include="utility\matching\CompareCreationExtensionPoint.cs" />
+    <Compile Include="utility\matching\Compare.cs" />
+    <Compile Include="utility\matching\ComparerExtensions.cs" />
     <Compile Include="utility\matching\FilteringExtensionPointEntry.cs" />
     <Compile Include="utility\matching\FilteringExtensionPoint.cs" />
     <Compile Include="utility\matching\FilteringExtensions.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="utility\matching\EqualToAny.cs" />
     <Compile Include="utility\matching\FallsInRange.cs" />
     <Compile Include="utility\matching\IProvideAccessToCreateMatchers.cs" />
+    <Compile Include="utility\matching\IProvideReturnType.cs" />
     <Compile Include="utility\matching\MatchCreationExtensionPoint.cs" />
     <Compile Include="utility\matching\MatchCreationExtensions.cs" />
     <Compile Include="utility\matching\RangeWithNoUpperBound.cs" />

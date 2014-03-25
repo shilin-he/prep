@@ -1,7 +1,7 @@
 namespace prep.utility.matching
 {
-  public interface IProvideAccessToCreateMatchers<in ItemToMatch, out AttributeType>
+  public interface IProvideAccessToCreateMatchers<in ItemToMatch, out AttributeType, out ReturnType>
   {
-    IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> criteria);
+    ReturnType create_matcher(IMatchA<AttributeType> criteria);
   }
 }

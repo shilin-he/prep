@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using prep.utility;
+using prep.utility.matching;
 
 namespace prep.collections
 {
@@ -106,7 +107,8 @@ namespace prep.collections
     /// </exception>
     public IEnumerable<Movie> sort_all_movies_by_title_ascending()
     {
-      throw new NotImplementedException();
+      var comparer = Compare<Movie>.by(x => x.title);
+      return all_movies().sort_using(comparer);
     }
 
     /// <summary>
@@ -132,7 +134,8 @@ namespace prep.collections
     /// </exception>
     public IEnumerable<Movie> sort_all_movies_by_date_published_descending()
     {
-      throw new NotImplementedException();
+      var comparer = Compare<Movie>.by_descending(x => x.date_published);
+      return all_movies().sort_using(comparer);
     }
 
     /// <summary>
@@ -145,7 +148,8 @@ namespace prep.collections
     /// </exception>
     public IEnumerable<Movie> sort_all_movies_by_date_published_ascending()
     {
-      throw new NotImplementedException();
+      var comparer = Compare<Movie>.by(x => x.date_published);
+      return all_movies().sort_using(comparer);
     }
   }
 }
