@@ -27,8 +27,7 @@ namespace prep.utility.matching
 
     public static IMatchA<ItemToMatch> create_conditional_match<ItemToMatch, AttributeType>(this MatchCreationExtensionPoint<ItemToMatch, AttributeType> extension_point, IMatchA<AttributeType> criteria)
     {
-      return new AttributeMatch<ItemToMatch, AttributeType>(extension_point.accesor ,
-        criteria);
+      return extension_point.create_matcher(criteria);
     }
 
     public static IMatchA<ItemToMatch> falls_in<ItemToMatch, AttributeType>(this MatchCreationExtensionPoint<ItemToMatch, AttributeType> extension_point, IContainValues<AttributeType> range)
