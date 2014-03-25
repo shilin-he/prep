@@ -233,10 +233,8 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_not_published_by_pixar = () =>
       {
-        var condition = Match<Movie>.with_attribute(x => x.production_studio)
+        var results = sut.all_movies().where(x => x.production_studio)
           .not.equal_to(ProductionStudio.Pixar);
-
-        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldNotContain(cars, a_bugs_life);
       };
@@ -295,7 +293,9 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
-        var results = sut.sort_all_movies_by_title_descending();
+        var comparison = Compare<Movie>.by_descending(x => x.title);
+
+        var results = sut.all_movies().sort_using(comparison);
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
           pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
@@ -337,7 +337,18 @@ namespace prep.specs
         //Dreamworks
         //Universal
         //Disney
-        var results = sut.sort_all_movies_by_movie_studio_and_year_published();
+        //Paramount
+
+        var comparison = Compare<Movie>.by(x => x.production_studio,
+          ProductionStudio.MGM,
+          ProductionStudio.Pixar,
+          ProductionStudio.Dreamworks,
+          ProductionStudio.Universal,
+          ProductionStudio.Disney,
+          ProductionStudio.Paramount
+          ).then_by(x => x.date_published);
+
+        var results = sut.all_movies().sort_using(comparison)
         /* should return a set of results 
                  * in the collection sorted by the rating of the production studio (not the movie rating) and year published. for this exercise you need to take the studio ratings
                  * into effect, which means that you first have to sort by movie studio (taking the ranking into account) and then by the

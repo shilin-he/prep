@@ -3,6 +3,8 @@ using prep.utility.matching;
 
 namespace prep.utility
 {
+  public delegate int Comparer<in ItemToCompare>(ItemToCompare x, ItemToCompare y);
+
   public static class EnumerableExtensions
   {
     public static IEnumerable<T> one_at_a_time<T>(this IEnumerable<T> items)
@@ -21,6 +23,20 @@ namespace prep.utility
       IMatchA<T> criteria)
     {
       return items.all_items_matching(criteria.matches);
+    }
+
+    public static IEnumerable<T> sort_using<T>(this IEnumerable<T> items,
+      Comparer<T> comparer)
+    {
+      var sorted = new List<T>(items);
+      sorted.Sort(comparer.Invoke);
+      return sorted;
+    }
+
+    public static IEnumerable<T> sort_using<T>(this IEnumerable<T> items,
+      IComparer<T> comparer)
+    {
+      return items.sort_using(comparer.Compare);
     }
   }
 }

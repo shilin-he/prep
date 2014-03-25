@@ -1,31 +1,42 @@
 namespace prep.utility.matching
 {
-  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType>
+  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToCreateMatchers<ItemToMatch, AttributeType>
   {
-    bool negate;
-    IGetAnAttribute<ItemToMatch, AttributeType> accesor;
+    IGetAnAttribute<ItemToMatch, AttributeType> accessor;
 
-    public MatchCreationExtensionPoint<ItemToMatch, AttributeType> not
+    public IProvideAccessToCreateMatchers<ItemToMatch, AttributeType> not
     {
       get
       {
-        negate = true;
-        return this;
+        return new NegatingMatchCreationExtensionPoint(this);
       }
     }
 
-    public MatchCreationExtensionPoint(IGetAnAttribute<ItemToMatch, AttributeType> accesor)
+    class NegatingMatchCreationExtensionPoint : IProvideAccessToCreateMatchers<ItemToMatch, AttributeType>
     {
-      this.accesor = accesor;
+      IProvideAccessToCreateMatchers<ItemToMatch, AttributeType> original;
+
+      public NegatingMatchCreationExtensionPoint(IProvideAccessToCreateMatchers<ItemToMatch, AttributeType> original)
+      {
+        this.original = original;
+      }
+
+      public IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> criteria)
+      {
+        return original.create_matcher(criteria).not(); 
+      }
+    }
+
+    public MatchCreationExtensionPoint(IGetAnAttribute<ItemToMatch, AttributeType> accessor)
+    {
+      this.accessor = accessor;
     }
 
     public IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> criteria)
     {
-      var matcher = new AttributeMatch<ItemToMatch, AttributeType>(
-        accesor ,
+      return new AttributeMatch<ItemToMatch, AttributeType>(
+        accessor ,
         criteria);
-
-      return negate ? matcher.not() : matcher;
     }
   }
 }

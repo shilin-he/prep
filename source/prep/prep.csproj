@@ -73,6 +73,7 @@
     <Compile Include="utility\matching\DateTimeMatchCreationExtensions.cs" />
     <Compile Include="utility\matching\EqualToAny.cs" />
     <Compile Include="utility\matching\FallsInRange.cs" />
+    <Compile Include="utility\matching\IProvideAccessToCreateMatchers.cs" />
     <Compile Include="utility\matching\MatchCreationExtensionPoint.cs" />
     <Compile Include="utility\matching\MatchCreationExtensions.cs" />
     <Compile Include="utility\matching\RangeWithNoUpperBound.cs" />
