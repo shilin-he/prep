@@ -63,6 +63,7 @@
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySet.cs" />
     <Compile Include="utility\Condition.cs" />
+    <Compile Include="utility\IEnumerableWhereExtension.cs" />
     <Compile Include="utility\IGetAnAttribute.cs" />
     <Compile Include="utility\matching\AttributeMatch.cs" />
     <Compile Include="utility\matching\ConditionalMatch.cs" />

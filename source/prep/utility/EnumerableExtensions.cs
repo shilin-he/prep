@@ -26,10 +26,5 @@ namespace prep.utility
       return items.all_items_matching(criteria.matches);
     }
 
-    public static DateTimeYearFilter<ItemType> where<ItemType>(this IEnumerable<ItemType> items,
-      IGetAnAttribute<ItemType, DateTime> accessor)
-    {
-      return new DateTimeYearFilter<ItemType>(items, accessor);
-    } 
   }
 }
