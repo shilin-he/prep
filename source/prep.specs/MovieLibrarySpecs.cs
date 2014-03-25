@@ -45,10 +45,10 @@
  * 
  * Develop With Passion®!!
  */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
@@ -73,8 +73,8 @@ namespace prep.specs
       };
     };
 
-    public class when_counting_the_number_of_movies : movie_library_concern
-    {
+    public class when_counting_the_number_of_movies : movie_library_concern{
+    
       static int number_of_movies;
 
       Establish c = () =>
@@ -87,7 +87,7 @@ namespace prep.specs
         number_of_movies.ShouldEqual(2);
     }
 
-    public class when_asked_for_all_of_the_movies : movie_library_concern
+    public class when_asked_for_all_of_the_movies : MovieLibrarySpecs.movie_library_concern
     {
       static Movie first_movie;
       static Movie second_movie;
@@ -212,6 +212,8 @@ namespace prep.specs
         var condition = Match<Movie>.with_attribute(x => x.production_studio)
           .equal_to(ProductionStudio.Pixar);
 
+        var results2 = sut.all_movies().where(x => x.production_studio).equal_to(ProductionStudio.Pixar);
+
         var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldContainOnly(cars, a_bugs_life);
@@ -219,11 +221,10 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
       {
-        var condition = Match<Movie>.with_attribute(x => x.production_studio)
+        var results = sut.all_movies().where(x => x.production_studio)
           .equal_to_any(ProductionStudio.Pixar,
             ProductionStudio.Disney);
 
-        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
       };
@@ -248,7 +249,6 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
       {
-
         var condition = Match<Movie>
           .with_attribute(x => x.date_published.Year)
           .between(1982, 2003);
@@ -262,7 +262,7 @@ namespace prep.specs
       {
         return date.Year;
       }
-     
+
       It should_be_able_to_find_all_kid_movies = () =>
       {
         var condition = Match<Movie>.with_attribute(x => x.genre)

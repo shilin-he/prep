@@ -65,9 +65,9 @@
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\IGetAnAttribute.cs" />
     <Compile Include="utility\matching\AttributeMatch.cs" />
-    <Compile Include="utility\matching\CollectionExtensions.cs" />
-    <Compile Include="utility\matching\CollectionWhereExtensionPoint.cs" />
-    <Compile Include="utility\matching\CollectionWhereExtensions.cs" />
+    <Compile Include="utility\matching\FilteringExtensionPointEntry.cs" />
+    <Compile Include="utility\matching\FilteringExtensionPoint.cs" />
+    <Compile Include="utility\matching\FilteringExtensions.cs" />
     <Compile Include="utility\matching\ConditionalMatch.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\matching\DateTimeMatchCreationExtensions.cs" />
