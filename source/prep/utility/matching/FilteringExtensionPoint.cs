@@ -2,16 +2,47 @@
 
 namespace prep.utility.matching
 {
-  public class FilteringExtensionPoint<TCollectionElement, TAttributeType>
-  {
-    public IEnumerable<TCollectionElement> elements { get; private set; }
-    public IGetAnAttribute<TCollectionElement, TAttributeType> attribute_accessor { get; private set; }
-
-    public FilteringExtensionPoint(IEnumerable<TCollectionElement> elements,
-      IGetAnAttribute<TCollectionElement, TAttributeType> attribute_accessor)
+    public class FilteringExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToCreateResult<IEnumerable<ItemToMatch>, AttributeType>
     {
-      this.elements = elements;
-      this.attribute_accessor = attribute_accessor;
+        IGetAnAttribute<ItemToMatch, AttributeType> accessor;
+        private IEnumerable<ItemToMatch> elements;
+
+        public IProvideAccessToCreateResult<IEnumerable<ItemToMatch>, AttributeType> not
+        {
+            get
+            {
+                return new NegatingFilteringExpressionPoint(this);
+            }
+        }
+
+        class NegatingFilteringExpressionPoint : IProvideAccessToCreateResult<IEnumerable<ItemToMatch>, AttributeType>
+        {
+            IProvideAccessToCreateResult<IEnumerable<ItemToMatch>, AttributeType> original;
+
+            public NegatingFilteringExpressionPoint(IProvideAccessToCreateResult<IEnumerable<ItemToMatch>, AttributeType> original)
+            {
+                this.original = original;
+            }
+
+            public IEnumerable<ItemToMatch> create(IMatchA<AttributeType> criteria)
+            {
+                return original.create(criteria.not());
+            }
+        }
+
+        public FilteringExtensionPoint(IEnumerable<ItemToMatch> elements, IGetAnAttribute<ItemToMatch, AttributeType> accessor)
+        {
+            this.elements = elements;
+            this.accessor = accessor;
+        }
+
+        public IEnumerable<ItemToMatch> create(IMatchA<AttributeType> criteria)
+        {
+            var attributeMatch = new AttributeMatch<ItemToMatch, AttributeType>(
+                accessor,
+                criteria);
+
+            return elements.all_items_matching(attributeMatch);
+        }
     }
-  }
 }

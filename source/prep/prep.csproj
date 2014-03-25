@@ -67,13 +67,12 @@
     <Compile Include="utility\matching\AttributeMatch.cs" />
     <Compile Include="utility\matching\FilteringExtensionPointEntry.cs" />
     <Compile Include="utility\matching\FilteringExtensionPoint.cs" />
-    <Compile Include="utility\matching\FilteringExtensions.cs" />
     <Compile Include="utility\matching\ConditionalMatch.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\matching\DateTimeMatchCreationExtensions.cs" />
     <Compile Include="utility\matching\EqualToAny.cs" />
     <Compile Include="utility\matching\FallsInRange.cs" />
-    <Compile Include="utility\matching\IProvideAccessToCreateMatchers.cs" />
+    <Compile Include="utility\matching\IProvideAccessToCreateResult.cs" />
     <Compile Include="utility\matching\MatchCreationExtensionPoint.cs" />
     <Compile Include="utility\matching\MatchCreationExtensions.cs" />
     <Compile Include="utility\matching\RangeWithNoUpperBound.cs" />

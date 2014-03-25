@@ -1,10 +1,10 @@
 namespace prep.utility.matching
 {
-  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToCreateMatchers<ItemToMatch, AttributeType>
+  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : IProvideAccessToCreateResult<IMatchA<ItemToMatch>, AttributeType>
   {
     IGetAnAttribute<ItemToMatch, AttributeType> accessor;
 
-    public IProvideAccessToCreateMatchers<ItemToMatch, AttributeType> not
+    public IProvideAccessToCreateResult<IMatchA<ItemToMatch>, AttributeType> not
     {
       get
       {
@@ -12,18 +12,18 @@ namespace prep.utility.matching
       }
     }
 
-    class NegatingMatchCreationExtensionPoint : IProvideAccessToCreateMatchers<ItemToMatch, AttributeType>
+    class NegatingMatchCreationExtensionPoint : IProvideAccessToCreateResult<IMatchA<ItemToMatch>, AttributeType>
     {
-      IProvideAccessToCreateMatchers<ItemToMatch, AttributeType> original;
+        IProvideAccessToCreateResult<IMatchA<ItemToMatch>, AttributeType> original;
 
-      public NegatingMatchCreationExtensionPoint(IProvideAccessToCreateMatchers<ItemToMatch, AttributeType> original)
+        public NegatingMatchCreationExtensionPoint(IProvideAccessToCreateResult<IMatchA<ItemToMatch>, AttributeType> original)
       {
         this.original = original;
       }
 
-      public IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> criteria)
+      public IMatchA<ItemToMatch> create(IMatchA<AttributeType> criteria)
       {
-        return original.create_matcher(criteria).not(); 
+        return original.create(criteria).not(); 
       }
     }
 
@@ -32,7 +32,7 @@ namespace prep.utility.matching
       this.accessor = accessor;
     }
 
-    public IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> criteria)
+    public IMatchA<ItemToMatch> create(IMatchA<AttributeType> criteria)
     {
       return new AttributeMatch<ItemToMatch, AttributeType>(
         accessor ,
