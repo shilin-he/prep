@@ -30,9 +30,14 @@ namespace prep.utility.matching
       return match_factory.not_equal_to(value);
     }
 
+    public IMatchA<ItemToMatch> create_conditional_match(Condition<ItemToMatch> condition)
+    {
+      return match_factory.create_conditional_match(condition);
+    }
+
     public IMatchA<ItemToMatch> greater_than(AttributeType value)
     {
-      return new ConditionalMatch<ItemToMatch>(x =>
+      return create_conditional_match(x =>
       {
         var attribute_value = accessor(x);
         return attribute_value.CompareTo(value) > 0;
@@ -41,7 +46,7 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> between(AttributeType start, AttributeType end)
     {
-      return new ConditionalMatch<ItemToMatch>(x =>
+      return create_conditional_match(x =>
       {
         var attribute_value = accessor(x);
         return attribute_value.CompareTo(start) >= 0 && attribute_value.CompareTo(end) <= 0;

@@ -18,13 +18,18 @@ namespace prep.utility.matching
 
     public IMatchA<ItemToMatch> equal_to_any(params AttributeType[] values)
     {
-      return new ConditionalMatch<ItemToMatch>(x =>
+      return create_conditional_match(x =>
         new List<AttributeType>(values).Contains(property_accessor(x)));
     }
 
     public IMatchA<ItemToMatch> not_equal_to(AttributeType value)
     {
       return equal_to(value).not();
+    }
+
+    public IMatchA<ItemToMatch> create_conditional_match(Condition<ItemToMatch> condition)
+    {
+      return new ConditionalMatch<ItemToMatch>(condition);
     }
   }
 }
