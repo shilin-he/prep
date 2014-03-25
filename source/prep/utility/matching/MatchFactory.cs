@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace prep.utility.matching
 {
-  public class MatchFactory<ItemToMatch, AttributeType>
+  public class MatchFactory<ItemToMatch, AttributeType> : ICreateMatchers<ItemToMatch, AttributeType>
   {
     IGetAnAttribute<ItemToMatch, AttributeType> property_accessor;
 

@@ -69,6 +69,7 @@
     <Compile Include="utility\matching\ComparableMatchFactory.cs" />
     <Compile Include="utility\matching\ConditionalMatch.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\matching\ICreateMatchers.cs" />
     <Compile Include="utility\matching\IMatchA.cs" />
     <Compile Include="utility\matching\Match.cs" />
     <Compile Include="utility\matching\MatchExtensions.cs" />
