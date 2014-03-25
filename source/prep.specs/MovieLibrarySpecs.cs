@@ -48,6 +48,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
@@ -239,7 +240,7 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-        var condition = Match<Movie>.with_comparable_attribute(x => x.date_published.Year)
+        var condition = Match<Movie>.with_attribute(x => x.date_published)
           .greater_than(2004);
 
         var results = sut.all_movies().all_items_matching(condition);
@@ -249,8 +250,9 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
       {
+
         var condition = Match<Movie>
-          .with_comparable_attribute(x => x.date_published.Year)
+          .with_attribute(x => x.date_published.Year)
           .between(1982, 2003);
 
         var results = sut.all_movies().all_items_matching(condition);
@@ -258,6 +260,11 @@ namespace prep.specs
         results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life, pirates_of_the_carribean);
       };
 
+      static int get_year(DateTime date)
+      {
+        return date.Year;
+      }
+     
       It should_be_able_to_find_all_kid_movies = () =>
       {
         var condition = Match<Movie>.with_attribute(x => x.genre)

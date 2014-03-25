@@ -1,5 +1,10 @@
 ﻿namespace prep.utility
 {
-  public delegate PropertyReturnType IGetAnAttribute<in ItemToInspect, 
-  out PropertyReturnType>(ItemToInspect item);
+  public delegate AttributeReturnType IGetAnAttribute<in TypeToRetrieveAttributeFrom, 
+  out AttributeReturnType>(TypeToRetrieveAttributeFrom item);
+
+
+
+
+
 }

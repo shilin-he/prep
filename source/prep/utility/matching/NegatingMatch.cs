@@ -1,10 +1,10 @@
 ﻿namespace prep.utility.matching
 {
-  public class NotMatch<Item> : IMatchA<Item>
+  public class NegatingMatch<Item> : IMatchA<Item>
   {
     IMatchA<Item> to_negate;
 
-    public NotMatch(IMatchA<Item> to_negate)
+    public NegatingMatch(IMatchA<Item> to_negate)
     {
       this.to_negate = to_negate;
     }

@@ -9,7 +9,7 @@
 
     public static IMatchA<Item> not<Item>(this IMatchA<Item> to_negate)
     {
-      return new NotMatch<Item>(to_negate);
+      return new NegatingMatch<Item>(to_negate);
     }
   }
 }
