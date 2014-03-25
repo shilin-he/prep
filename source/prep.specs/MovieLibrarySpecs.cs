@@ -212,7 +212,8 @@ namespace prep.specs
         var condition = Match<Movie>.with_attribute(x => x.production_studio)
           .equal_to(ProductionStudio.Pixar);
 
-        var results2 = sut.all_movies().where(x => x.production_studio).equal_to(ProductionStudio.Pixar);
+        var results2 = Match<Movie>.with_attribute(x => x.production_studio)
+          .equal_to(ProductionStudio.Pixar);
 
         var results = sut.all_movies().all_items_matching(condition);
 
@@ -221,10 +222,11 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
       {
-        var results = sut.all_movies().where(x => x.production_studio)
+        var condition = Match<Movie>.with_attribute(x => x.production_studio)
           .equal_to_any(ProductionStudio.Pixar,
             ProductionStudio.Disney);
 
+        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
       };
@@ -232,7 +234,7 @@ namespace prep.specs
       It should_be_able_to_find_all_movies_not_published_by_pixar = () =>
       {
         var condition = Match<Movie>.with_attribute(x => x.production_studio)
-          .not_equal_to(ProductionStudio.Pixar);
+          .not.equal_to(ProductionStudio.Pixar);
 
         var results = sut.all_movies().all_items_matching(condition);
 
