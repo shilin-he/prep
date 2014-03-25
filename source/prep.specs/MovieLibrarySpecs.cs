@@ -240,10 +240,8 @@ namespace prep.specs
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-        var condition = Match<Movie>.with_attribute(x => x.date_published)
+        var results = sut.all_movies().where(x => x.date_published)
           .greater_than(2004);
-
-        var results = sut.all_movies().all_items_matching(condition);
 
         results.ShouldContainOnly(the_ring, shrek, theres_something_about_mary);
       };
