@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using prep.utility;
+using prep.utility.comparisons;
 using prep.utility.matching;
 
 namespace prep.collections

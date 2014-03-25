@@ -55,6 +55,7 @@ using Machine.Specifications;
 using prep.collections;
 using prep.specs.utility;
 using prep.utility;
+using prep.utility.comparisons;
 using prep.utility.matching;
 
 namespace prep.specs
@@ -293,7 +294,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
-        var comparison = Compare<Movie>.by_descending(x => x.title);
+        var comparison = Compare<Movie>.by(x => x.title, SortOrder.descending);
 
         var results = sut.all_movies().sort_using(comparison);
 
@@ -304,7 +305,9 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_ascending = () =>
       {
-        var results = sut.sort_all_movies_by_title_ascending();
+        var comparison = Compare<Movie>.by(x => x.title);
+
+        var results = sut.all_movies().sort_using(comparison);
 
         results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
           pirates_of_the_carribean, shrek, the_ring,
