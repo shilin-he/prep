@@ -1,5 +1,4 @@
-﻿using prep.utility;
-using prep.utility.matching;
+﻿using prep.utility.matching;
 
 namespace prep.collections
 {
@@ -15,6 +14,6 @@ namespace prep.collections
     public bool matches(Movie movie)
     {
       return movie.genre == genre;
-    } 
+    }
   }
 }

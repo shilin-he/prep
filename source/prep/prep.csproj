@@ -66,17 +66,23 @@
     <Compile Include="collections\ReadOnlySet.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\IGetAnAttribute.cs" />
+    <Compile Include="utility\matching\AttributeMatch.cs" />
     <Compile Include="utility\matching\ComparableMatchFactory.cs" />
     <Compile Include="utility\matching\ConditionalMatch.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\matching\EqualToAny.cs" />
+    <Compile Include="utility\matching\FallsInRange.cs" />
+    <Compile Include="utility\matching\RangeWithNoUpperBound.cs" />
     <Compile Include="utility\matching\ICreateMatchers.cs" />
     <Compile Include="utility\matching\IMatchA.cs" />
+    <Compile Include="utility\matching\InclusiveRange.cs" />
     <Compile Include="utility\matching\Match.cs" />
     <Compile Include="utility\matching\MatchExtensions.cs" />
     <Compile Include="utility\matching\MatchFactory.cs" />
     <Compile Include="utility\matching\NeverMatches.cs" />
     <Compile Include="utility\matching\NotMatch.cs" />
     <Compile Include="utility\matching\OrMatch.cs" />
+    <Compile Include="utility\ranges\IContainValues.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

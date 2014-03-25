@@ -1,17 +1,15 @@
 ﻿using System;
+using prep.utility.ranges;
 
 namespace prep.utility.matching
 {
   public class ComparableMatchFactory<ItemToMatch, AttributeType> : ICreateMatchers<ItemToMatch, AttributeType>
     where AttributeType : IComparable<AttributeType>
   {
-    IGetAnAttribute<ItemToMatch, AttributeType> accessor;
     ICreateMatchers<ItemToMatch, AttributeType> match_factory;
 
-    public ComparableMatchFactory(IGetAnAttribute<ItemToMatch, AttributeType> accessor, 
-      ICreateMatchers<ItemToMatch, AttributeType> match_factory)
+    public ComparableMatchFactory(ICreateMatchers<ItemToMatch, AttributeType> match_factory)
     {
-      this.accessor = accessor;
       this.match_factory = match_factory;
     }
 
@@ -35,22 +33,25 @@ namespace prep.utility.matching
       return match_factory.create_conditional_match(condition);
     }
 
+    public IMatchA<ItemToMatch> falls_in(IContainValues<AttributeType> range)
+    {
+      return create_conditional_match(new FallsInRange<AttributeType>(range));
+    }
+
     public IMatchA<ItemToMatch> greater_than(AttributeType value)
     {
-      return create_conditional_match(x =>
-      {
-        var attribute_value = accessor(x);
-        return attribute_value.CompareTo(value) > 0;
-      });
+      return falls_in(new RangeWithNoUpperBound<AttributeType>(value));
+    }
+
+    public IMatchA<ItemToMatch> create_conditional_match(IMatchA<AttributeType> criteria)
+    {
+      return match_factory.create_conditional_match(criteria);
     }
 
     public IMatchA<ItemToMatch> between(AttributeType start, AttributeType end)
     {
-      return create_conditional_match(x =>
-      {
-        var attribute_value = accessor(x);
-        return attribute_value.CompareTo(start) >= 0 && attribute_value.CompareTo(end) <= 0;
-      });
+      return falls_in(new InclusiveRange<AttributeType>(
+        start, end));
     }
   }
 }
