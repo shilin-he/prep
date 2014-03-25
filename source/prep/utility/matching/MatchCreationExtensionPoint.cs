@@ -1,16 +1,15 @@
 namespace prep.utility.matching
 {
-  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType>
+  public class MatchCreationExtensionPoint<ItemToMatch, AttributeType> : ICreateMatchExtensionPoint<ItemToMatch, AttributeType>
   {
     bool negate;
     IGetAnAttribute<ItemToMatch, AttributeType> accesor;
 
-    public MatchCreationExtensionPoint<ItemToMatch, AttributeType> not
+    public ICreateMatchExtensionPoint<ItemToMatch, AttributeType> not
     {
       get
       {
-        negate = true;
-        return this;
+        return new NegatingMatchCreationExtensionPoint<ItemToMatch, AttributeType>(this);
       }
     }
 
@@ -22,7 +21,7 @@ namespace prep.utility.matching
     public IMatchA<ItemToMatch> create_matcher(IMatchA<AttributeType> criteria)
     {
       var matcher = new AttributeMatch<ItemToMatch, AttributeType>(
-        accesor ,
+        accesor,
         criteria);
 
       return negate ? matcher.not() : matcher;
