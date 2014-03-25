@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using prep.utility.matching;
 
 namespace prep.utility
@@ -38,5 +39,12 @@ namespace prep.utility
     {
       return items.sort_using(comparer.Compare);
     }
+
+    public static MatchCreationExtensionPoint<ItemToMatch, AttributeType, IEnumerable<ItemToMatch>> where<ItemToMatch, AttributeType>(
+      this IEnumerable<ItemToMatch> items, IGetAnAttribute<ItemToMatch, AttributeType> attribute_accessor)
+    {
+      return new MatchCreationExtensionPoint<ItemToMatch, AttributeType, IEnumerable<ItemToMatch>>(attribute_accessor, 
+        spec => items.all_items_matching(new AttributeMatch<ItemToMatch, AttributeType>(attribute_accessor, spec)));
+    } 
   }
 }
