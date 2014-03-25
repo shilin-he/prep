@@ -81,6 +81,7 @@
     <Compile Include="utility\matching\NegatingMatch.cs" />
     <Compile Include="utility\matching\OrMatch.cs" />
     <Compile Include="utility\ranges\IContainValues.cs" />
+    <Compile Include="utility\DateTimeYearFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

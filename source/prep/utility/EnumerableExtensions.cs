@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.Policy;
 using prep.utility.matching;
 
 namespace prep.utility
@@ -22,5 +25,11 @@ namespace prep.utility
     {
       return items.all_items_matching(criteria.matches);
     }
+
+    public static DateTimeYearFilter<ItemType> where<ItemType>(this IEnumerable<ItemType> items,
+      IGetAnAttribute<ItemType, DateTime> accessor)
+    {
+      return new DateTimeYearFilter<ItemType>(items, accessor);
+    } 
   }
 }
