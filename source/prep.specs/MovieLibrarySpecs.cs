@@ -294,7 +294,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
-        var comparison = Compare<Movie>.by(x => x.title, SortOrder.descending);
+        var comparison = Compare<Movie>.by(x => x.title, SortOrders.descending);
 
         var results = sut.all_movies().sort_using(comparison);
 
@@ -316,7 +316,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_date_published_descending = () =>
       {
-        var results = sut.sort_all_movies_by_date_published_descending();
+        var results = sut.all_movies().sort_using(Compare<Movie>.by(x => x.date_published, SortOrders.descending));
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, the_ring, cars,
           pirates_of_the_carribean, a_bugs_life,
@@ -325,7 +325,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_date_published_ascending = () =>
       {
-        var results = sut.sort_all_movies_by_date_published_ascending();
+        var results = sut.all_movies().sort_using(Compare<Movie>.by(x => x.date_published));
 
         results.ShouldContainOnlyInOrder(indiana_jones_and_the_temple_of_doom, a_bugs_life,
           pirates_of_the_carribean, cars, the_ring, shrek,

@@ -65,7 +65,9 @@
     <Compile Include="utility\comparisons\CombinedComparer.cs" />
     <Compile Include="utility\comparisons\ComparableComparer.cs" />
     <Compile Include="utility\comparisons\FixedComparer.cs" />
+    <Compile Include="utility\comparisons\ICalculateWineMarkup.cs" />
     <Compile Include="utility\comparisons\ReverseComparer.cs" />
+    <Compile Include="utility\comparisons\SortOrder.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\IGetAnAttribute.cs" />
     <Compile Include="utility\comparisons\AttributeComparer.cs" />
